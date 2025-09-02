@@ -1,5 +1,4 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import { errorTost, successTost } from './tost';
 
 const form = document.querySelector('.form');
 
@@ -11,18 +10,10 @@ form.addEventListener('submit', event => {
 
   createPromise(delay, state)
     .then(delay => {
-      iziToast.success({
-        title: 'Success',
-        message: `✅ Fulfilled promise in ${delay}ms`,
-        position: 'topRight',
-      });
+      successTost(`✅ Fulfilled promise in ${delay}ms`);
     })
     .catch(delay => {
-      iziToast.error({
-        title: 'Error',
-        message: `❌ Rejected promise in ${delay}ms`,
-        position: 'topRight',
-      });
+      errorTost(`❌ Rejected promise in ${delay}ms`);
     });
 
   form.reset();

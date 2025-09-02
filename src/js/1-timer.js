@@ -1,7 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import { errorTost } from './tost';
 
 const refs = {
   startBtn: document.querySelector('[data-start]'),
@@ -25,11 +24,7 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     if (selectedDate <= new Date()) {
-      iziToast.error({
-        title: 'Error',
-        message: 'Please choose a date in the future',
-        position: 'topRight',
-      });
+      errorTost('Please choose a date in the future');
       refs.startBtn.disabled = true;
     } else {
       userSelectedDate = selectedDate;
